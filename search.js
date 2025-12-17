@@ -11,26 +11,36 @@ const listContainerElem = document.getElementById("list-container")
 function displayResults(injectedArray) {
     // clear previous results
     listContainerElem.innerHTML = "";
-    if(injectedArray.length === 0) {
+
+    // check if the length of the injectedArray (allStudents array is empty)
+    if (injectedArray.length === 0) {
+        // when there is no element in the array, inject an <li> no matching names found!
         listContainerElem.innerHTML = "<li>No matching names found</li>";
-        return;
+        return; // terminate the code block
     }
 
-
-
-
+    // iterate over the allStudents array
+    injectedArray.forEach((name) => {
+        // create a new list item (li)
+        const listElem = document.createElement("li");
+        // after creating an li, assign the name of each student as the text content
+        listElem.textContent = name;
+        // append(add to) / add the <li> you created to the container (ul)
+        listContainerElem.appendChild(listElem);
+    })
+}
 
 
 // create function to handle search logic
-function handleSearch() {
+function handleSearch(event) {
     // grab user's search input
     // trim empty spaces and covert to a lower case
-    const searchQuery = event.target.value.trim().toLowerCase();
+    const userSearchQuery = event.target.value.trim().toLowerCase();
 
-    if(searchQuery.length > 0) {
+    if (userSearchQuery.length > 0) {
         // filter the allStudents array, based on the user's input query
         const filterBySearch = allStudents.filter((student) => {
-            return allStudents.toLowerCase().includes(searchQuery)
+            return student.toLowerCase().includes(userSearchQuery)
         });
 
         // display the filtered names
@@ -42,4 +52,6 @@ function handleSearch() {
 }
 
 // add an eventlistener to the input box
-searchBtnElem.addEventListener("click", handleSearch);
+searchInputElem.addEventListener("input", handleSearch);
+
+displayResults(allStudents);
