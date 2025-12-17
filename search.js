@@ -30,8 +30,11 @@ function displayResults(injectedArray) {
     })
 }
 
+// search for "a"
+// const filterBySearch = ["ifeanyi", "amadi", "emma", "joshua"]
 
-// create function to handle search logic
+
+// function to handle search logic
 function handleSearch(event) {
     // grab user's search input
     // trim empty spaces and covert to a lower case
@@ -54,4 +57,6 @@ function handleSearch(event) {
 // add an eventlistener to the input box
 searchInputElem.addEventListener("input", handleSearch);
 
+
+// display all the names from the allStudents array when the page loads the first time
 displayResults(allStudents);
